@@ -2,9 +2,9 @@
 
 namespace IbrahimBougaoua\FilamentCountryStateCity\Tests;
 
+use IbrahimBougaoua\FilamentCountryStateCity\FilamentCountryStateCityServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use IbrahimBougaoua\FilamentCountryStateCity\FilamentCountryStateCityServiceProvider;
 
 class TestCase extends Orchestra
 {
