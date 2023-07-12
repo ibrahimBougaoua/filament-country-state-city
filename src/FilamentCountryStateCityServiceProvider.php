@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace IbrahimBougaoua\FilamentCountryStateCity;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use IbrahimBougaoua\FilamentCountryStateCity\Commands\FilamentCountryStateCityCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class FilamentCountryStateCityServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('filament-country-state-city')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_filament-country-state-city_table')
+            ->hasCommand(FilamentCountryStateCityCommand::class);
     }
 }

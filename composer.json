@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "ibrahimbougaoua/filament-country-state-city",
+    "description": "This is my package filament-country-state-city",
     "keywords": [
-        ":vendor_name",
+        "ibrahimBougaoua",
         "laravel",
-        ":package_slug"
+        "filament-country-state-city"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/ibrahimbougaoua/filament-country-state-city",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Ibrahim",
+            "email": "ibrahim.bougaoua@etu.usthb.dz",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "IbrahimBougaoua\\FilamentCountryStateCity\\": "src/",
+            "IbrahimBougaoua\\FilamentCountryStateCity\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "IbrahimBougaoua\\FilamentCountryStateCity\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "IbrahimBougaoua\\FilamentCountryStateCity\\FilamentCountryStateCityServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentCountryStateCity": "IbrahimBougaoua\\FilamentCountryStateCity\\Facades\\FilamentCountryStateCity"
             }
         }
     },

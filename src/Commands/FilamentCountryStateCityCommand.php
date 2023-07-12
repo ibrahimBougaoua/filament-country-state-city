@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace IbrahimBougaoua\FilamentCountryStateCity\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentCountryStateCityCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-country-state-city';
 
     public $description = 'My command';
 
