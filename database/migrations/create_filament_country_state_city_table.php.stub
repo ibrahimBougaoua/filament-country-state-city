@@ -3,16 +3,41 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
     public function up()
     {
-        Schema::create('filament_country_state_city_table', function (Blueprint $table) {
+        Schema::create('filament_countries', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('flag')->nullable();
+            $table->boolean('status')->default(true);
+            $table->softDeletes();
+            $table->timestamps();
+        });
 
-            // add fields
+        Schema::create('filament_states', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->boolean('status')->default(true);
+            $table->unsignedBigInteger('country_id')->unsigned()->nullable()->index();
+            $table->foreign('country_id')->references('id')->on('filament_countries')->onDelete('cascade');
+            $table->softDeletes();
+            $table->timestamps();
+        });
 
+        Schema::create('filament_cities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->boolean('status')->default(true);
+            $table->unsignedBigInteger('state_id')->unsigned()->nullable()->index();
+            $table->foreign('state_id')->references('id')->on('filament_states')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

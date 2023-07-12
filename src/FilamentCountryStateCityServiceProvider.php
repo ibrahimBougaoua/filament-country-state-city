@@ -2,12 +2,26 @@
 
 namespace IbrahimBougaoua\FilamentCountryStateCity;
 
+use IbrahimBougaoua\FilamentCountryStateCity\Commands\FilamentLocationInstallCommand;
+use IbrahimBougaoua\FilamentCountryStateCity\Resources\CityResource;
+use IbrahimBougaoua\FilamentCountryStateCity\Resources\CountryResource;
+use IbrahimBougaoua\FilamentCountryStateCity\Resources\StateResource;
 use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
-use IbrahimBougaoua\FilamentCountryStateCity\Commands\FilamentCountryStateCityCommand;
+use Filament\PluginServiceProvider;
 
-class FilamentCountryStateCityServiceProvider extends PackageServiceProvider
+class FilamentCountryStateCityServiceProvider extends PluginServiceProvider
 {
+    protected array $resources = [
+        CountryResource::class,
+        StateResource::class,
+        CityResource::class,
+    ];
+
+    public function packageBooted(): void
+    {
+        parent::packageBooted();
+    }
+
     public function configurePackage(Package $package): void
     {
         /*
@@ -19,7 +33,7 @@ class FilamentCountryStateCityServiceProvider extends PackageServiceProvider
             ->name('filament-country-state-city')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_filament-country-state-city_table')
-            ->hasCommand(FilamentCountryStateCityCommand::class);
+            ->hasMigration('create_filament_country_state_city_table')
+            ->hasCommand(FilamentLocationInstallCommand::class);
     }
 }
