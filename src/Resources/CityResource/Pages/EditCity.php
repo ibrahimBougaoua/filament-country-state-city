@@ -2,9 +2,9 @@
 
 namespace IbrahimBougaoua\FilamentCountryStateCity\Resources\CityResource\Pages;
 
-use IbrahimBougaoua\FilamentCountryStateCity\Resources\CityResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
+use IbrahimBougaoua\FilamentCountryStateCity\Resources\CityResource;
 
 class EditCity extends EditRecord
 {

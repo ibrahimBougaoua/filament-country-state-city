@@ -2,10 +2,10 @@
 
 namespace IbrahimBougaoua\FilamentCountryStateCity\Resources\CountryResource\Pages;
 
-use Filament\Pages\Actions\Action;
-use IbrahimBougaoua\FilamentCountryStateCity\Resources\CountryResource;
 use Filament\Pages\Actions;
+use Filament\Pages\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
+use IbrahimBougaoua\FilamentCountryStateCity\Resources\CountryResource;
 
 class ListCountries extends ListRecords
 {

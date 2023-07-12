@@ -2,9 +2,8 @@
 
 namespace IbrahimBougaoua\FilamentCountryStateCity\Resources\StateResource\Pages;
 
-use IbrahimBougaoua\FilamentCountryStateCity\Resources\StateResource;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use IbrahimBougaoua\FilamentCountryStateCity\Resources\StateResource;
 
 class CreateState extends CreateRecord
 {

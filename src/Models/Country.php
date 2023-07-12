@@ -12,14 +12,14 @@ class Country extends Model
     protected $table = 'filament_countries';
 
     protected $fillable = [
-        "name",
-        "slug",
-        "flag",
-        "status"
+        'name',
+        'slug',
+        'flag',
+        'status',
     ];
 
     public function states()
     {
-        return $this->hasMany(State::class,"country_id");
+        return $this->hasMany(State::class, 'country_id');
     }
 }

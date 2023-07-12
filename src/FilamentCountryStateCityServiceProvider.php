@@ -2,12 +2,12 @@
 
 namespace IbrahimBougaoua\FilamentCountryStateCity;
 
+use Filament\PluginServiceProvider;
 use IbrahimBougaoua\FilamentCountryStateCity\Commands\FilamentLocationInstallCommand;
 use IbrahimBougaoua\FilamentCountryStateCity\Resources\CityResource;
 use IbrahimBougaoua\FilamentCountryStateCity\Resources\CountryResource;
 use IbrahimBougaoua\FilamentCountryStateCity\Resources\StateResource;
 use Spatie\LaravelPackageTools\Package;
-use Filament\PluginServiceProvider;
 
 class FilamentCountryStateCityServiceProvider extends PluginServiceProvider
 {
