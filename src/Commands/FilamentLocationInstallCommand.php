@@ -14,9 +14,8 @@ class FilamentLocationInstallCommand extends Command
 
     public function handle(): int
     {
-        if( FilamentCountryStateCity::hasMigrated() )
-        {
-            DB::unprepared(file_get_contents( __DIR__ . '\query.sql'));
+        if (FilamentCountryStateCity::hasMigrated()) {
+            DB::unprepared(file_get_contents(__DIR__.'\query.sql'));
             $this->comment('All done');
         } else {
             $this->comment('You are not migrate tables yet,please follow steps : ');

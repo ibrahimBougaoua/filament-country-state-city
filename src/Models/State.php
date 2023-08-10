@@ -12,19 +12,19 @@ class State extends Model
     protected $table = 'filament_states';
 
     protected $fillable = [
-        "name",
-        "slug",
-        "status",
-        "country_id"
+        'name',
+        'slug',
+        'status',
+        'country_id',
     ];
 
     public function country()
     {
-        return $this->belongsTo(Country::class,"country_id");
+        return $this->belongsTo(Country::class, 'country_id');
     }
 
     public function cities()
     {
-        return $this->hasMany(City::class,"state_id");
+        return $this->hasMany(City::class, 'state_id');
     }
 }
