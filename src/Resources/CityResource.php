@@ -3,6 +3,7 @@
 namespace IbrahimBougaoua\FilamentCountryStateCity\Resources;
 
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -23,40 +24,64 @@ class CityResource extends Resource
 {
     protected static ?string $model = City::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'icon-city';
 
-    protected static ?string $navigationGroup = 'Location';
+    public static function getLabel(): ?string
+    {
+        return __('location.cities');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('location.cities');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('location.cities');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('location.location');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
+                Section::make()
                     ->schema([
-                        TextInput::make('name')->label('Name')->required()
-                            ->reactive()
-                            ->afterStateUpdated(function ($state, callable $set) {
-                                $set('slug', Str::slug($state));
-                            })
-                            ->columnSpan([
-                                'md' => 12,
-                            ]),
-                        TextInput::make('slug')->label('Slug')->required()
+                        TextInput::make('name')
+                        ->label(__('location.name'))
+                        ->required()
+                        ->reactive()
+                        ->afterStateUpdated(function ($state, callable $set) {
+                            $set('slug', Str::slug($state));
+                        })
+                        ->columnSpan([
+                            'md' => 12,
+                        ]),
+                        TextInput::make('slug')
+                        ->label(__('location.slug'))
+                        ->required()
                             ->disabled()
                             ->columnSpan([
                                 'md' => 12,
                             ]),
-                        Select::make('state_id')->label('Country')
+                        Select::make('state_id')
+                        ->label(__('location.state'))
                             ->reactive()
                             ->required()
                             ->options(State::all()->pluck('name', 'id')->toArray())->searchable()
                             ->columnSpan([
                                 'md' => 12,
                             ]),
-                        Select::make('status')->label('Status')
+                        Select::make('status')
+                        ->label(__('location.status'))
                             ->options([
-                                '1' => 'Active',
-                                '0' => 'Inactive',
+                                '1' => __('location.active'),
+                                '0' => __('location.inactive'),
                             ])->default('1')->disablePlaceholderSelection()
                             ->columnSpan([
                                 'md' => 12,
@@ -73,26 +98,38 @@ class CityResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Name')
-                    ->icon('heroicon-o-rectangle-stack')->sortable()->searchable(),
-                TextColumn::make('slug')->label('Slug')->limit(20)->sortable()->searchable(),
-                TextColumn::make('state.name')->label('Name')->limit(20)->sortable()->searchable(),
+                TextColumn::make('name')
+                ->label(__('location.name'))
+                ->icon('heroicon-o-rectangle-stack')
+                ->sortable()
+                ->searchable(),
+                TextColumn::make('slug')
+                ->label(__('location.slug'))
+                ->limit(20)
+                ->sortable()
+                ->searchable(),
+                TextColumn::make('state.name')
+                ->label(__('location.state_name'))
+                ->limit(20)
+                ->sortable()
+                ->searchable(),
                 IconColumn::make('status')
-                    ->label('Status')->boolean()
-                    ->trueIcon('heroicon-o-rectangle-stack')
-                    ->falseIcon('heroicon-o-rectangle-stack'),
-                TextColumn::make('created_at')->label('Created at'),
+                ->label(__('location.status'))
+                ->boolean()
+                ->trueIcon('heroicon-o-rectangle-stack')
+                ->falseIcon('heroicon-o-rectangle-stack'),
+                TextColumn::make('created_at')->label(__('location.created_at')),
             ])
             ->filters([
                 SelectFilter::make('status')
-                    ->label('Status')->options([
-                    '1' => 'Active',
-                    '0' => 'Inactive',
+                    ->label(__('location.status'))->options([
+                    '1' => __('location.active'),
+                    '0' => __('location.inactive'),
                 ]),
                 Filter::make('created_at')
-                    ->label('Created at')->form([
-                    Forms\Components\DatePicker::make('created_from')->label('Created from'),
-                    Forms\Components\DatePicker::make('created_until')->label('Created until'),
+                    ->label('created_at')->form([
+                    Forms\Components\DatePicker::make('created_from')->label(__('location.created_from')),
+                    Forms\Components\DatePicker::make('created_until')->label(__('location.created_until')),
                 ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
