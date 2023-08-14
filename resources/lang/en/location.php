@@ -1,6 +1,6 @@
 <?php
 
-return 
+return
     [
         'location' => 'Location',
         'cities' => 'Cities',

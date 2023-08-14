@@ -2,8 +2,8 @@
 
 namespace IbrahimBougaoua\FilamentCountryStateCity;
 
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class FilamentCountryStateCityServiceProvider extends PackageServiceProvider
 {

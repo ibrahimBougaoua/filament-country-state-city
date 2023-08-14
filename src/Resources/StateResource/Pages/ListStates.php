@@ -3,8 +3,8 @@
 namespace IbrahimBougaoua\FilamentCountryStateCity\Resources\StateResource\Pages;
 
 use Filament\Actions;
-use Filament\Tables\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Tables\Actions\Action;
 use IbrahimBougaoua\FilamentCountryStateCity\Resources\StateResource;
 
 class ListStates extends ListRecords

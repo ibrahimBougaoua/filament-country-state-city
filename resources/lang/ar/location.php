@@ -1,6 +1,6 @@
 <?php
 
-return 
+return
     [
         'location' => 'الموقع',
         'cities' => 'مدن',
