@@ -13,6 +13,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('name_fr');
+            $table->string('name_ar');
             $table->string('flag')->nullable();
             $table->boolean('status')->default(true);
             $table->softDeletes();
@@ -23,6 +25,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('name_fr');
+            $table->string('name_ar');
             $table->boolean('status')->default(true);
             $table->unsignedBigInteger('country_id')->unsigned()->nullable()->index();
             $table->foreign('country_id')->references('id')->on('filament_countries')->onDelete('cascade');
@@ -34,6 +38,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('name_fr');
+            $table->string('name_ar');
             $table->boolean('status')->default(true);
             $table->unsignedBigInteger('state_id')->unsigned()->nullable()->index();
             $table->foreign('state_id')->references('id')->on('filament_states')->onDelete('cascade');

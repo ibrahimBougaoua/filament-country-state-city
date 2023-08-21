@@ -5,6 +5,7 @@ namespace IbrahimBougaoua\FilamentCountryStateCity\Resources;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -24,27 +25,9 @@ class StateResource extends Resource
 {
     protected static ?string $model = State::class;
 
-    protected static ?string $navigationIcon = 'icon-state';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function getLabel(): ?string
-    {
-        return __('location.states');
-    }
-
-    public static function getPluralLabel(): ?string
-    {
-        return __('location.states');
-    }
-
-    public static function getNavigationLabel(): string
-    {
-        return __('location.states');
-    }
-
-    public static function getNavigationGroup(): string
-    {
-        return __('location.location');
-    }
+    protected static ?string $navigationGroup = 'Location';
 
     public static function form(Form $form): Form
     {
@@ -52,40 +35,63 @@ class StateResource extends Resource
             ->schema([
                 Section::make()
                     ->schema([
-                        TextInput::make('name')
-                        ->label(__('location.name'))
-                        ->required()
-                        ->reactive()
-                        ->afterStateUpdated(function ($state, callable $set) {
-                            $set('slug', Str::slug($state));
-                        })
+                        Tabs::make('names')
+                        ->tabs([
+                            Tabs\Tab::make('name_en')
+                                ->label(__('panel.name_en'))
+                                ->schema([
+                                    TextInput::make('name')
+                                    ->reactive()
+                                    ->afterStateUpdated(function ($state, callable $set) {
+                                        $set('slug', Str::slug($state));
+                                    })
+                                    ->label(__('panel.name_en'))
+                                    ->columnSpan([
+                                        'md' => 12,
+                                    ])
+                                ]),
+                            Tabs\Tab::make('name_fr')
+                                ->label(__('panel.name_fr'))
+                                ->schema([
+                                    TextInput::make('name_fr')
+                                    ->label(__('panel.name_fr'))
+                                    ->columnSpan([
+                                        'md' => 12,
+                                    ])
+                                ]),
+                            Tabs\Tab::make('name_ar')
+                                ->label(__('panel.name_ar'))
+                                ->schema([
+                                    TextInput::make('name_ar')
+                                    ->label(__('panel.name_ar'))
+                                    ->columnSpan([
+                                        'md' => 12,
+                                    ])
+                                ]),
+                        ])
                         ->columnSpan([
                             'md' => 12,
                         ]),
-                        TextInput::make('slug')
-                        ->label(__('location.slug'))
-                        ->required()
-                        ->disabled()
-                        ->columnSpan([
-                            'md' => 12,
-                        ]),
-                        Select::make('country_id')
-                        ->label(__('location.Country'))
-                        ->reactive()
-                        ->required()
-                        ->options(Country::all()->pluck('name', 'id')->toArray())->searchable()
-                        ->columnSpan([
-                            'md' => 12,
-                        ]),
-                        Select::make('status')
-                        ->label(__('location.status'))
-                        ->options([
-                            '1' => __('location.active'),
-                            '0' => __('location.inactive'),
-                        ])->default('1')->disablePlaceholderSelection()
-                        ->columnSpan([
-                            'md' => 12,
-                        ]),
+                        TextInput::make('slug')->label('Slug')->required()
+                            ->disabled()
+                            ->columnSpan([
+                                'md' => 12,
+                            ]),
+                        Select::make('country_id')->label('Country')
+                            ->reactive()
+                            ->required()
+                            ->options(Country::all()->pluck('name', 'id')->toArray())->searchable()
+                            ->columnSpan([
+                                'md' => 12,
+                            ]),
+                        Select::make('status')->label('Status')
+                            ->options([
+                                '1' => 'Active',
+                                '0' => 'Inactive',
+                            ])->default('1')->disablePlaceholderSelection()
+                            ->columnSpan([
+                                'md' => 12,
+                            ]),
                     ])
                     ->columns([
                         'md' => 10,
@@ -98,41 +104,27 @@ class StateResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                ->label(__('location.name'))
-                ->icon('heroicon-o-rectangle-stack')
-                ->sortable()
-                ->searchable(),
-                TextColumn::make('slug')
-                ->label(__('location.slug'))
-                ->limit(20)
-                ->sortable()
-                ->searchable(),
-                TextColumn::make('country.name')
-                ->label(__('location.country_name'))
-                ->sortable()
-                ->searchable(),
-                TextColumn::make('cities_count')
-                ->counts('cities')
-                ->label(__('location.cities_count')),
+                TextColumn::make('name')->label('Name')
+                    ->icon('heroicon-o-rectangle-stack')->sortable()->searchable(),
+                TextColumn::make('slug')->label('Slug')->limit(20)->sortable()->searchable(),
+                TextColumn::make('country.name')->label('Country')->sortable()->searchable(),
+                TextColumn::make('cities_count')->counts('cities'),
                 IconColumn::make('status')
-                ->label(__('location.status'))
-                ->boolean()
-                ->trueIcon('heroicon-o-rectangle-stack')
-                ->falseIcon('heroicon-o-rectangle-stack'),
-                TextColumn::make('created_at')
-                ->label(__('location.created_at')),
+                    ->label('Status')->boolean()
+                    ->trueIcon('heroicon-o-rectangle-stack')
+                    ->falseIcon('heroicon-o-rectangle-stack'),
+                TextColumn::make('created_at')->label('Created at'),
             ])
             ->filters([
                 SelectFilter::make('status')
-                    ->label(__('location.status'))->options([
-                    '1' => __('location.active'),
-                    '0' => __('location.inactive'),
+                    ->label('Status')->options([
+                    '1' => 'Active',
+                    '0' => 'Inactive',
                 ]),
                 Filter::make('created_at')
                     ->label(__('panel.created_at'))->form([
-                    Forms\Components\DatePicker::make('created_from')->label(__('location.created_from')),
-                    Forms\Components\DatePicker::make('created_until')->label(__('location.created_until')),
+                    Forms\Components\DatePicker::make('created_from')->label('Created from'),
+                    Forms\Components\DatePicker::make('created_until')->label('Created until'),
                 ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
