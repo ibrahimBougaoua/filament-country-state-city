@@ -2,16 +2,8 @@
 
 namespace IbrahimBougaoua\FilamentCountryStateCity;
 
-use Filament\Navigation\NavigationGroup;
-use Filament\Tables\Columns\Layout\Panel;
-use Filament\Contracts\Plugin;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Filament\PluginServiceProvider;
-use IbrahimBougaoua\FilamentCountryStateCity\Commands\FilamentLocationInstallCommand;
-use IbrahimBougaoua\FilamentCountryStateCity\Resources\CityResource;
-use IbrahimBougaoua\FilamentCountryStateCity\Resources\CountryResource;
-use IbrahimBougaoua\FilamentCountryStateCity\Resources\StateResource;
 use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class FilamentCountryStateCityServiceProvider extends PackageServiceProvider
 {

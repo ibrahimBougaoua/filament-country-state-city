@@ -36,42 +36,42 @@ class StateResource extends Resource
                 Section::make()
                     ->schema([
                         Tabs::make('names')
-                        ->tabs([
-                            Tabs\Tab::make('name_en')
-                                ->label(__('panel.name_en'))
-                                ->schema([
-                                    TextInput::make('name')
-                                    ->reactive()
-                                    ->afterStateUpdated(function ($state, callable $set) {
-                                        $set('slug', Str::slug($state));
-                                    })
+                            ->tabs([
+                                Tabs\Tab::make('name_en')
                                     ->label(__('panel.name_en'))
-                                    ->columnSpan([
-                                        'md' => 12,
-                                    ])
-                                ]),
-                            Tabs\Tab::make('name_fr')
-                                ->label(__('panel.name_fr'))
-                                ->schema([
-                                    TextInput::make('name_fr')
+                                    ->schema([
+                                        TextInput::make('name')
+                                            ->reactive()
+                                            ->afterStateUpdated(function ($state, callable $set) {
+                                                $set('slug', Str::slug($state));
+                                            })
+                                            ->label(__('panel.name_en'))
+                                            ->columnSpan([
+                                                'md' => 12,
+                                            ]),
+                                    ]),
+                                Tabs\Tab::make('name_fr')
                                     ->label(__('panel.name_fr'))
-                                    ->columnSpan([
-                                        'md' => 12,
-                                    ])
-                                ]),
-                            Tabs\Tab::make('name_ar')
-                                ->label(__('panel.name_ar'))
-                                ->schema([
-                                    TextInput::make('name_ar')
+                                    ->schema([
+                                        TextInput::make('name_fr')
+                                            ->label(__('panel.name_fr'))
+                                            ->columnSpan([
+                                                'md' => 12,
+                                            ]),
+                                    ]),
+                                Tabs\Tab::make('name_ar')
                                     ->label(__('panel.name_ar'))
-                                    ->columnSpan([
-                                        'md' => 12,
-                                    ])
-                                ]),
-                        ])
-                        ->columnSpan([
-                            'md' => 12,
-                        ]),
+                                    ->schema([
+                                        TextInput::make('name_ar')
+                                            ->label(__('panel.name_ar'))
+                                            ->columnSpan([
+                                                'md' => 12,
+                                            ]),
+                                    ]),
+                            ])
+                            ->columnSpan([
+                                'md' => 12,
+                            ]),
                         TextInput::make('slug')->label('Slug')->required()
                             ->disabled()
                             ->columnSpan([
@@ -118,14 +118,14 @@ class StateResource extends Resource
             ->filters([
                 SelectFilter::make('status')
                     ->label('Status')->options([
-                    '1' => 'Active',
-                    '0' => 'Inactive',
-                ]),
+                        '1' => 'Active',
+                        '0' => 'Inactive',
+                    ]),
                 Filter::make('created_at')
                     ->label(__('panel.created_at'))->form([
-                    Forms\Components\DatePicker::make('created_from')->label('Created from'),
-                    Forms\Components\DatePicker::make('created_until')->label('Created until'),
-                ])
+                        Forms\Components\DatePicker::make('created_from')->label('Created from'),
+                        Forms\Components\DatePicker::make('created_until')->label('Created until'),
+                    ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
                             ->when(
